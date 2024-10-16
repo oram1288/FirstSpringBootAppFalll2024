@@ -3,6 +3,8 @@ package com.keyin.book;
 import com.keyin.author.Author;
 import com.keyin.author.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -18,8 +20,9 @@ public class BookController {
     private AuthorService authorService;
 
     @GetMapping("/listAllBooks")
-    public Iterable<Book> getAllBooks() {
-        return bookService.getAllBooks();
+    public ResponseEntity<String> getAllBooks() {
+         bookService.getAllBooks();
+         return new ResponseEntity<>("Fetched All Data For You. List As Been Fetched!", HttpStatus.OK);
     }
 
     @PostMapping("/addNewBook")
