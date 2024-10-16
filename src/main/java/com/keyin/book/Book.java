@@ -1,9 +1,7 @@
-package book;
+package com.keyin.book;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.keyin.author.Author;
+import jakarta.persistence.*;
 
 @Entity
 public class Book {
@@ -14,7 +12,8 @@ public class Book {
 
     private String title;
 
-    private String author;
+    @ManyToOne
+    private Author author;
 
     private String publisher;
 
@@ -23,20 +22,8 @@ public class Book {
     public Book() {
     }
 
-    public Book(String isbn, String publisher, String author, String title, Long bookId) {
-        this.isbn = isbn;
-        this.publisher = publisher;
-        this.author = author;
-        this.title = title;
-        this.bookId = bookId;
-    }
 
-    public Book(String title, String author, String publisher, String isbn) {
-        this.title = title;
-        this.author = author;
-        this.publisher = publisher;
-        this.isbn = isbn;
-    }
+
 
     public Long getBookId() {
         return bookId;
@@ -54,13 +41,7 @@ public class Book {
         this.title = title;
     }
 
-    public String getAuthor() {
-        return author;
-    }
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
 
     public String getPublisher() {
         return publisher;
@@ -76,5 +57,13 @@ public class Book {
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 }
