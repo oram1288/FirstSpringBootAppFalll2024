@@ -20,9 +20,9 @@ public class BookController {
     private AuthorService authorService;
 
     @GetMapping("/listAllBooks")
-    public ResponseEntity<String> getAllBooks() {
+    public ResponseEntity<Iterable<Book>> getAllBooks() {
          bookService.getAllBooks();
-         return new ResponseEntity<>("Fetched All Data For You. List As Been Fetched!", HttpStatus.OK);
+         return  ResponseEntity.ok().body(bookService.getAllBooks());
     }
 
     @PostMapping("/addNewBook")
